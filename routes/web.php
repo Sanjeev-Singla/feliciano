@@ -61,5 +61,17 @@ Route::group(["prefix"=>"admin"],function(){
 	});
 	Route::post("/","Admin\AdminCtrl@login");
 
-	Route::get("home","Admin\AdminHome@index");
+	Route::get("home",function(){
+		return view("admin.templates.dashboard");
+	});
+
+	/*
+	*	MENU ITEMS
+	*/
+	Route::group(["prefix"=>"menu"],function(){
+		Route::get('items',function(){
+			return view("admin.templates.menu.items");
+		});
+	});
+	
 });

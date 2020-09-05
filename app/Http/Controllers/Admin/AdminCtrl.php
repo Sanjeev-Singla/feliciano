@@ -24,7 +24,7 @@ class AdminCtrl extends Controller
     	$admin = Admin::whereName($request->username)->first();
     	if (isset($admin)) {
     		if ($request->password == $admin->password){
-    			//session()->put("admin_token",$token);
+    			session()->put("admin_id",$admin->id);
     			session()->flash('message', 'Successfully LoggedIn'); 
 				session()->flash('alert-class', 'alert-success');
 				return redirect("admin/home");
