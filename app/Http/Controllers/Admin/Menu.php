@@ -13,7 +13,9 @@ class Menu extends Controller
     	}
     }
 
-    public function index(){
-    	
+    public function index(Request $request){
+    	echo "<pre>";
+    	print_r($request->all());
+    	die();
     }
 }

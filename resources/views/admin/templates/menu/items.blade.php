@@ -123,7 +123,7 @@
 										</div>
 										<!-- /.card-header -->
 										<!-- form start -->
-										<form role="form">
+										<form id="menu_item_form_submit" role="form" action="" method="POST">
 											@csrf
 											<div class="card-body">
 												<div class="form-group">
@@ -134,7 +134,7 @@
 												<div class="form-group">
 													<label>Ingrediants</label>
 													<div class="select2-purple">
-														<select class="select2" name="ingrediants" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">
+														<select class="select2" name="ingrediants[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">
 															<option>Alabama</option>
 															<option>Alaska</option>
 															<option>California</option>
@@ -149,7 +149,7 @@
 												<div class="form-group">
 													<label>Category</label>
 													<div class="select2-purple">
-														<select class="select2" name="category" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">
+														<select class="select2" name="category[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">
 															<option>Alabama</option>
 															<option>Alaska</option>
 															<option>California</option>
@@ -162,16 +162,8 @@
 												</div>
 
 												<div class="form-group">
-													<label>Price</label>
-													<div class="input-group">
-														<div class="input-group-prepend">
-															<span class="input-group-text">$</span>
-														</div>
-														<input type="text" class="form-control">
-														<div class="input-group-append">
-															<span class="input-group-text">.00</span>
-														</div>
-													</div>
+													<label>Price (In Dollar)</label>
+													<input type="text" name="price" class="form-control" placeholder="Enter Price">
 												</div>
 
 												<div class="form-group">
@@ -190,7 +182,7 @@
 											<!-- /.card-body -->
 
 											<div class="card-footer">
-												<button type="submit" class="btn btn-info pull-right">Submit</button>
+												<button id="menu_item_form_button" type="submit" class="btn btn-info pull-right">Submit</button>
 											</div>
 										</form>
 									</div>
@@ -209,5 +201,14 @@
 		</div>
 	</section>
 </div>
-</div>
+
+@push('custom-js')
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+	<script src="{{ url('resources/assets/admin/custom/js/menu-items.js') }}"></script>
+@endpush
+
+@push('custom-css')
+	<link rel="stylesheet" href="{{ url('resources/assets/admin/custom/css/menu-items.css') }}">
+@endpush
+
 @endsection

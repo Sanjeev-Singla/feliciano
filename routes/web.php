@@ -71,6 +71,8 @@ Route::group(["prefix"=>"admin"],function(){
 		Route::get('items',function(){
 			return view("admin.templates.menu.items");
 		});
+
+		Route::post('items', "Admin\Menu@index");
 	});
 	
 });

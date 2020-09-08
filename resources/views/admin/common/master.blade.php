@@ -30,8 +30,10 @@
   	<!-- Toastr -->
   	<link rel="stylesheet" href="{{ url('resources/assets/plugins/toastr/toastr.min.css') }}">
 
-	<!-- Theme style -->
-	<link rel="stylesheet" href="{{ url('resources/assets/admin/dist/css/adminlte.min.css') }}">
+	  <!-- Theme style -->
+	  <link rel="stylesheet" href="{{ url('resources/assets/admin/dist/css/adminlte.min.css') }}">
+    <!-- Custom CSS -->
+    @stack('custom-css')
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -78,7 +80,8 @@
 <script src="{{ url('resources/assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 <!-- Toastr -->
 <script src="{{ url('resources/assets/plugins/toastr/toastr.min.js') }}"></script>
-
+<!-- Custom JS -->
+@stack('custom-js')
 <!-- Page script -->
 <script type="text/javascript">
 	$(function () {

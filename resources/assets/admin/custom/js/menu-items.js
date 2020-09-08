@@ -1,0 +1,19 @@
+$(document).ready(function(){
+	$('#menu_item_form_button').click(function(){
+		$('#menu_item_form_submit').validate({
+			rules:{
+				title:{
+					required:true,
+					minlength:6
+				},
+				"ingrediants[]":"required",
+				"category[]":"required",
+				price:{
+					required:true,
+					number:true
+				},
+				
+			},
+		});
+	});
+});
