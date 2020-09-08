@@ -123,18 +123,18 @@
 										</div>
 										<!-- /.card-header -->
 										<!-- form start -->
-										<form id="menu_item_form_submit" role="form" action="" method="POST">
+										<form autocomplete="off" id="menu_item_form_submit" role="form" action="" method="POST">
 											@csrf
 											<div class="card-body">
 												<div class="form-group">
 													<label for="exampleInputEmail1">Title</label>
-													<input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Item Title">
+													<input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Item Title" required>
 												</div>
 
 												<div class="form-group">
 													<label>Ingrediants</label>
 													<div class="select2-purple">
-														<select class="select2" name="ingrediants[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">
+														<select class="select2" name="ingrediants[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;" required>
 															<option>Alabama</option>
 															<option>Alaska</option>
 															<option>California</option>
@@ -149,7 +149,7 @@
 												<div class="form-group">
 													<label>Category</label>
 													<div class="select2-purple">
-														<select class="select2" name="category[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">
+														<select class="select2" name="category[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;" required>
 															<option>Alabama</option>
 															<option>Alaska</option>
 															<option>California</option>
@@ -163,7 +163,7 @@
 
 												<div class="form-group">
 													<label>Price (In Dollar)</label>
-													<input type="text" name="price" class="form-control" placeholder="Enter Price">
+													<input type="number" name="price" class="form-control" placeholder="Enter Price" required>
 												</div>
 
 												<div class="form-group">
