@@ -123,25 +123,23 @@
 										</div>
 										<!-- /.card-header -->
 										<!-- form start -->
-										<form autocomplete="off" id="menu_item_form_submit" role="form" action="" method="POST">
+										<form enctype="multipart/form-data" autocomplete="off" id="menu_item_form_submit" role="form" action="" method="POST">
 											@csrf
 											<div class="card-body">
 												<div class="form-group">
 													<label for="exampleInputEmail1">Title</label>
-													<input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter Item Title" required>
+													<input type="text" name="title" minlength="6" class="form-control" id="exampleInputEmail1" placeholder="Enter Item Title" required>
 												</div>
 
 												<div class="form-group">
 													<label>Ingrediants</label>
 													<div class="select2-purple">
-														<select class="select2" name="ingrediants[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;" required>
-															<option>Alabama</option>
-															<option>Alaska</option>
-															<option>California</option>
-															<option>Delaware</option>
-															<option>Tennessee</option>
-															<option>Texas</option>
-															<option>Washington</option>
+														<select class="select2" name="ingredients[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;" required>
+															@forelse($ingrediants as $ingrediant)
+															<option value="{{ $ingrediant->id }}">{{ $ingrediant->ingrediant }}</option>
+															@empty
+															<option value="">No Ingrediant Available</option>
+															@endforelse
 														</select>
 													</div>
 												</div>
@@ -150,13 +148,11 @@
 													<label>Category</label>
 													<div class="select2-purple">
 														<select class="select2" name="category[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;" required>
-															<option>Alabama</option>
-															<option>Alaska</option>
-															<option>California</option>
-															<option>Delaware</option>
-															<option>Tennessee</option>
-															<option>Texas</option>
-															<option>Washington</option>
+															@forelse($categories as $category)
+															<option value="{{ $category->id }}">{{ $category->category }}</option>
+															@empty
+															<option value="">No Category Available</option>
+															@endforelse
 														</select>
 													</div>
 												</div>
@@ -170,7 +166,7 @@
 													<label for="exampleInputFile">Upload Image</label>
 													<div class="input-group">
 														<div class="custom-file">
-															<input type="file" class="custom-file-input" id="exampleInputFile">
+															<input name="image" type="file" class="custom-file-input" id="exampleInputFile">
 															<label class="custom-file-label" for="exampleInputFile">Choose file</label>
 														</div>
 														<div class="input-group-append">
@@ -205,6 +201,31 @@
 @push('custom-js')
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
 	<script src="{{ url('resources/assets/admin/custom/js/menu-items.js') }}"></script>
+	<script type="text/javascript">
+		@if(Session::has('message'))
+			let sess_class = "{{ Session::get('class') }}";
+			let sess_msg = "{{ Session::get('message') }}";
+			if (sess_class == 'success') {
+			    toastr.success(sess_msg);
+			} else if (sess_class == 'danger') {
+			    toastr.error(sess_msg);
+			}else{
+				toastr.info("Something Went Wrong!");
+			}
+		@endif
+		@if(!empty($error))
+			@foreach($error->all() as $error)
+				@if($error)
+					toastr.error("{{ $error }}");
+				@endif
+			@endforeach
+		@endif
+		@if (count($errors) > 0)
+      		@foreach ($errors->all() as $error)
+       			toastr.error("{{ $error }}");
+      		@endforeach
+   		@endif
+	</script>
 @endpush
 
 @push('custom-css')

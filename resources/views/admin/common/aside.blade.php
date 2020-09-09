@@ -32,9 +32,21 @@
 	          		</a>
 	          		<ul class="nav nav-treeview">
 	          			<li class="nav-item">
-	          				<a href="{{ url('admin/menu/items') }}" class="nav-link active">
+	          				<a href="{{ route('items') }}" class="nav-link">
 	          					<i class="far fa-circle nav-icon"></i>
 	          					<p>Menu Items</p>
+	          				</a>
+	          			</li>
+	          			<li class="nav-item">
+	          				<a href="{{ route('ingrediants') }}" class="nav-link">
+	          					<i class="far fa-circle nav-icon"></i>
+	          					<p>Ingrediants</p>
+	          				</a>
+	          			</li>
+	          			<li class="nav-item">
+	          				<a href="{{ route('categories') }}" class="nav-link">
+	          					<i class="far fa-circle nav-icon"></i>
+	          					<p>Categories</p>
 	          				</a>
 	          			</li>
 	          		</ul>

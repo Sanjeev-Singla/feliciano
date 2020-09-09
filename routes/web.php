@@ -68,11 +68,12 @@ Route::group(["prefix"=>"admin"],function(){
 	*	MENU ITEMS
 	*/
 	Route::group(["prefix"=>"menu"],function(){
-		Route::get('items',function(){
-			return view("admin.templates.menu.items");
-		});
 
-		Route::post('items', "Admin\Menu@index");
+		Route::match(['get','post'],'items',["as"=>"items","uses"=>"Admin\Menu@index"]);
+
+		Route::match(['get','post'],"ingrediants",["as"=>"ingrediants","uses"=>"Admin\Menu@ingrediants"]);
+
+		Route::match(['get','post'],"categories",["as"=>"categories","uses"=>"Admin\Menu@categories"]);
 	});
 	
 });
