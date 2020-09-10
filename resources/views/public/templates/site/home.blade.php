@@ -217,6 +217,44 @@
 			</div>
 		</div>
 		<div class="row no-gutters d-flex align-items-stretch">
+
+
+			@foreach($items as $item)
+			<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
+				<div class="menus d-sm-flex ftco-animate align-items-stretch">
+					
+					<img class="menu-img img" src="{{ $item->image }}">
+					<div class="text d-flex align-items-center">
+						<div>
+							<div class="d-flex">
+								<div class="one-half">
+									<h3>{{ Str::words($item->title,4) }}</h3>
+								</div>
+								<div class="one-forth">
+									<span class="price">${{ $item->price }}</span>
+								</div>
+							</div>
+							<p>
+								<?php
+									$ingredient_ids = explode(",", $item->ingredients);
+									foreach ($ingredient_ids as $key => $value) {
+										$ingredient[] = App\Models\Ingrediants::find($value)->ingrediant;
+									}
+								?>
+								{{ Str::words(implode(", ", $ingredient),6) }}
+							</p>
+							<p><a href="#" class="btn btn-primary">Order now</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			@endforeach
+
+
+
+
+
+
 			<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
 				<div class="menus d-sm-flex ftco-animate align-items-stretch">
 					<div class="menu-img img" style="background-image: url(resources/assets/public/images/breakfast-1.jpg);"></div>

@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(["prefix"=>"/"],function(){
 
-	Route::get('/', function () {
-	    return view('public/templates/site/home');
-	});
+	Route::get('/', "Users\Home@index");
 
 	Route::get("about",function(){
 		return view("public/templates/site/about");
@@ -33,9 +31,7 @@ Route::group(["prefix"=>"/"],function(){
 		return view("public/templates/site/contact");
 	});
 
-	Route::get("menu",function(){
-		return view("public/templates/site/menu");
-	});
+	Route::get("menu","Users\Menu@index");
 
 	Route::get("reservation",function(){
 		return view("public/templates/site/reservation");

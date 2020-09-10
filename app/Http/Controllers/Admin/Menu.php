@@ -34,12 +34,11 @@ class Menu extends Controller
                 $img->resize(800, 800, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save(public_path("images/menu").'/'.$input['imagename']);
-                $data['image'] = url('/public/images/menu/').$input['imagename'];
+                $data['image'] = url('/public/images/menu').'/'.$input['imagename'];
             }
             $data['category'] = implode(",", $data['category']);
             $data['ingredients'] = implode(",", $data['ingredients']);
             $data['ip'] = $request->ip();
-            //dd($data);
             $menu = new Menus($data);
             $result = $menu->save();
             if ($result) {
@@ -53,7 +52,8 @@ class Menu extends Controller
         }else{
             $ingrediants = Ingrediants::all();
             $categories = Categories::all();
-            return view($this->view.'items',compact(['ingrediants','categories']));
+            $items = Menus::whereStatus(1)->paginate(10);
+            return view($this->view.'items',compact(['ingrediants','categories','items']));
         }
     }
 

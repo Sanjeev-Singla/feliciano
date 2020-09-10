@@ -40,6 +40,56 @@
 
 						<div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
 							<div class="row no-gutters d-flex align-items-stretch">
+
+								<?php $i = 1;?>
+								@foreach($menus as $menu)
+									<?php
+										if ($i%3==0 || $i%4==0) {
+											$class = "order-md-last";
+										}
+										$category_ids = explode(",", $menu->category);
+										foreach ($category_ids as $key => $value) {
+											$category[] = App\Models\Categories::find($value)->category;
+											
+										}
+									?>
+									@if(in_array("dinner",$category))
+									<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
+										<div class="menus d-sm-flex ftco-animate align-items-stretch">
+											
+											<img class="menu-img img {{ $class }}" src="{{ $menu->image }}">
+											<div class="text d-flex align-items-center">
+												<div>
+													<div class="d-flex">
+														<div class="one-half">
+															<h3>{{ Str::words($menu->title,4) }}</h3>
+														</div>
+														<div class="one-forth">
+															<span class="price">${{ $menu->price }}</span>
+														</div>
+													</div>
+													<p>
+														<?php
+															$ingredient_ids = explode(",", $menu->ingredients);
+															foreach ($ingredient_ids as $key => $value) {
+																$ingredient[] = App\Models\Ingrediants::find($value)->ingrediant;
+															}
+														?>
+														{{ Str::words(implode(", ", $ingredient),6) }}
+													</p>
+													<p><a href="#" class="btn btn-primary">Order now</a></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<?php
+										if (!empty($class)) {
+									 		unset($class)
+										}
+									?>
+									@endif
+								@endforeach
+
 								<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
 									<div class="menus d-sm-flex ftco-animate align-items-stretch">
 										<div class="menu-img img" style="background-image: url(resources/assets/public/images/breakfast-1.jpg);"></div>

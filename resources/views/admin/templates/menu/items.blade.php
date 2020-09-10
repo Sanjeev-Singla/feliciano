@@ -33,68 +33,70 @@
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
+							<!-- Table -->
 							<table class="table table-bordered">
 								<thead>                  
 									<tr>
 										<th style="width: 10px">#</th>
-										<th>Task</th>
-										<th>Progress</th>
-										<th style="width: 40px">Label</th>
+										<th>Title</th>
+										<th>Ingredients</th>
+										<th>Category</th>
+										<th>Image</th>
+										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1.</td>
-										<td>Update software</td>
-										<td>
-											<div class="progress progress-xs">
-												<div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-											</div>
-										</td>
-										<td><span class="badge bg-danger">55%</span></td>
-									</tr>
-									<tr>
-										<td>2.</td>
-										<td>Clean database</td>
-										<td>
-											<div class="progress progress-xs">
-												<div class="progress-bar bg-warning" style="width: 70%"></div>
-											</div>
-										</td>
-										<td><span class="badge bg-warning">70%</span></td>
-									</tr>
-									<tr>
-										<td>3.</td>
-										<td>Cron job running</td>
-										<td>
-											<div class="progress progress-xs progress-striped active">
-												<div class="progress-bar bg-primary" style="width: 30%"></div>
-											</div>
-										</td>
-										<td><span class="badge bg-primary">30%</span></td>
-									</tr>
-									<tr>
-										<td>4.</td>
-										<td>Fix and squish bugs</td>
-										<td>
-											<div class="progress progress-xs progress-striped active">
-												<div class="progress-bar bg-success" style="width: 90%"></div>
-											</div>
-										</td>
-										<td><span class="badge bg-success">90%</span></td>
-									</tr>
+									@forelse($items as $item)
+										<tr>
+											<td>{{ $item->id }}</td>
+											<td>{{ $item->title }}</td>
+											<td>
+												<?php
+													$ingredient_ids = explode(",", $item->ingredients);
+													foreach ($ingredient_ids as $key => $value) {
+														$ingredient = App\Models\Ingrediants::find($value)->ingrediant;
+														echo "<li>".$ingredient."</li>";
+													}
+												?>
+												
+											</td>
+											<td>
+												<?php
+													$category_ids = explode(",", $item->category);
+													foreach ($category_ids as $key => $value) {
+														$category = App\Models\Categories::find($value)->category;
+														echo "<li>".$category."</li>";
+													}
+												?>
+											</td>
+											<td><img height="100px;" src="{{ $item->image }}"></td>
+											<td>
+												<a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+												<a href="#" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+											</td>
+										</tr>
+									@empty
+										<tr>
+											<td colspan="4">No Item is available</td>
+										</tr>
+									@endforelse
 								</tbody>
+								<tfoot>
+									<tr>
+										<th style="width: 10px">#</th>
+										<th>Title</th>
+										<th>Ingredients</th>
+										<th>Category</th>
+										<th>Image</th>
+										<th>Action</th>
+									</tr>
+								</tfoot>
 							</table>
+							<!-- End Table -->
 						</div>
 						<!-- /.card-body -->
 						<div class="card-footer clearfix">
-							<ul class="pagination pagination-sm m-0 float-right">
-								<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-							</ul>
+							<div class="pull-right">{{ $items->links() }}</div>
 						</div>
 					</div>
 					<!-- /.card -->
