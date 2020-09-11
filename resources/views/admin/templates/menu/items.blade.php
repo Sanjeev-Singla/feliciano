@@ -69,7 +69,7 @@
 													}
 												?>
 											</td>
-											<td><img height="100px;" src="{{ $item->image }}"></td>
+											<td><img height="100px;" width="150px;" src="{{ $item->image }}"></td>
 											<td>
 												<a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
 												<a href="#" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
@@ -77,7 +77,7 @@
 										</tr>
 									@empty
 										<tr>
-											<td colspan="4">No Item is available</td>
+											<td colspan="6">No Item is available</td>
 										</tr>
 									@endforelse
 								</tbody>

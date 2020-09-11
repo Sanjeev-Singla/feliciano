@@ -44,6 +44,7 @@
 								<?php $i = 1;?>
 								@foreach($menus as $menu)
 									<?php
+										$class = "";
 										if ($i%3==0 || $i%4==0) {
 											$class = "order-md-last";
 										}
@@ -84,8 +85,9 @@
 									</div>
 									<?php
 										if (!empty($class)) {
-									 		unset($class)
+									 		unset($class);
 										}
+										$i++;
 									?>
 									@endif
 								@endforeach
