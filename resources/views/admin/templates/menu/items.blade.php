@@ -71,7 +71,7 @@
 											</td>
 											<td><img height="100px;" width="150px;" src="{{ $item->image }}"></td>
 											<td>
-												<a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+												<a id="admin_delete_menu_item" item-url="{{ route('admin_delete_menu_item',$item->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
 												<a href="#" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
 											</td>
 										</tr>
@@ -203,6 +203,7 @@
 @push('custom-js')
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
 	<script src="{{ url('resources/assets/admin/custom/js/menu-items.js') }}"></script>
+
 	<script type="text/javascript">
 		@if(Session::has('message'))
 			let sess_class = "{{ Session::get('class') }}";
@@ -228,6 +229,7 @@
       		@endforeach
    		@endif
 	</script>
+
 @endpush
 
 @push('custom-css')

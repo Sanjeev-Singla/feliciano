@@ -41,9 +41,11 @@
 						<div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
 							<div class="row no-gutters d-flex align-items-stretch">
 
-								<?php $i = 1;?>
+								@php
+									$i = 1;
+								@endphp
 								@foreach($menus as $menu)
-									<?php
+									@php
 										$class = "";
 										if ($i%3==0 || $i%4==0) {
 											$class = "order-md-last";
@@ -53,7 +55,7 @@
 											$category[] = App\Models\Categories::find($value)->category;
 											
 										}
-									?>
+									@endphp
 									@if(in_array("dinner",$category))
 									<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
 										<div class="menus d-sm-flex ftco-animate align-items-stretch">
@@ -83,12 +85,12 @@
 											</div>
 										</div>
 									</div>
-									<?php
+									@php
 										if (!empty($class)) {
 									 		unset($class);
 										}
 										$i++;
-									?>
+									@endphp
 									@endif
 								@endforeach
 

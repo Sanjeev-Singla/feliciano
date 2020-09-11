@@ -218,159 +218,55 @@
 		</div>
 		<div class="row no-gutters d-flex align-items-stretch">
 
-
+			@php
+				$i = 1;
+			@endphp
 			@foreach($items as $item)
-			<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
-				<div class="menus d-sm-flex ftco-animate align-items-stretch">
-					
-					<img class="menu-img img" src="{{ $item->image }}">
-					<div class="text d-flex align-items-center">
-						<div>
-							<div class="d-flex">
-								<div class="one-half">
-									<h3>{{ Str::words($item->title,4) }}</h3>
+				@php
+					if($i>6){
+						break;
+					}
+					$class = "";
+					if ($i%3==0 || $i%4==0) {
+						$class = "order-md-last";
+					}
+				@endphp
+				<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
+					<div class="menus d-sm-flex ftco-animate align-items-stretch">
+						
+						<img class="menu-img img {{ $class }}" src="{{ $item->image }}">
+						<div class="text d-flex align-items-center">
+							<div>
+								<div class="d-flex">
+									<div class="one-half">
+										<h3>{{ Str::words($item->title,4) }}</h3>
+									</div>
+									<div class="one-forth">
+										<span class="price">${{ $item->price }}</span>
+									</div>
 								</div>
-								<div class="one-forth">
-									<span class="price">${{ $item->price }}</span>
-								</div>
+								<p>
+									@php
+										$ingredient_ids = explode(",", $item->ingredients);
+										foreach ($ingredient_ids as $key => $value) {
+											$ingredient[] = App\Models\Ingrediants::find($value)->ingrediant;
+										}
+									@endphp
+									{{ Str::words(implode(", ", $ingredient),6) }}
+								</p>
+								<p><a href="#" class="btn btn-primary">Order now</a></p>
 							</div>
-							<p>
-								<?php
-									$ingredient_ids = explode(",", $item->ingredients);
-									foreach ($ingredient_ids as $key => $value) {
-										$ingredient[] = App\Models\Ingrediants::find($value)->ingrediant;
-									}
-								?>
-								{{ Str::words(implode(", ", $ingredient),6) }}
-							</p>
-							<p><a href="#" class="btn btn-primary">Order now</a></p>
 						</div>
 					</div>
 				</div>
-			</div>
+				@php
+					if (!empty($class)) {
+				 		unset($class);
+					}
+					$i++;
+				@endphp
 			@endforeach
 
-
-
-
-
-
-			<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
-				<div class="menus d-sm-flex ftco-animate align-items-stretch">
-					<div class="menu-img img" style="background-image: url(resources/assets/public/images/breakfast-1.jpg);"></div>
-					<div class="text d-flex align-items-center">
-						<div>
-							<div class="d-flex">
-								<div class="one-half">
-									<h3>Grilled Beef with potatoes</h3>
-								</div>
-								<div class="one-forth">
-									<span class="price">$29</span>
-								</div>
-							</div>
-							<p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-							<p><a href="#" class="btn btn-primary">Order now</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
-				<div class="menus d-sm-flex ftco-animate align-items-stretch">
-					<div class="menu-img img" style="background-image: url(resources/assets/public/images/breakfast-2.jpg);"></div>
-					<div class="text d-flex align-items-center">
-						<div>
-							<div class="d-flex">
-								<div class="one-half">
-									<h3>Grilled Beef with potatoes</h3>
-								</div>
-								<div class="one-forth">
-									<span class="price">$29</span>
-								</div>
-							</div>
-							<p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-							<p><a href="#" class="btn btn-primary">Order now</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
-				<div class="menus d-sm-flex ftco-animate align-items-stretch">
-					<div class="menu-img img order-md-last" style="background-image: url(resources/assets/public/images/breakfast-3.jpg);"></div>
-					<div class="text d-flex align-items-center">
-						<div>
-							<div class="d-flex">
-								<div class="one-half">
-									<h3>Grilled Beef with potatoes</h3>
-								</div>
-								<div class="one-forth">
-									<span class="price">$29</span>
-								</div>
-							</div>
-							<p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-							<p><a href="#" class="btn btn-primary">Order now</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
-				<div class="menus d-sm-flex ftco-animate align-items-stretch">
-					<div class="menu-img img order-md-last" style="background-image: url(resources/assets/public/images/breakfast-5.jpg);"></div>
-					<div class="text d-flex align-items-center">
-						<div>
-							<div class="d-flex">
-								<div class="one-half">
-									<h3>Grilled Beef with potatoes</h3>
-								</div>
-								<div class="one-forth">
-									<span class="price">$29</span>
-								</div>
-							</div>
-							<p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-							<p><a href="#" class="btn btn-primary">Order now</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
-				<div class="menus d-sm-flex ftco-animate align-items-stretch">
-					<div class="menu-img img" style="background-image: url(resources/assets/public/images/breakfast-6.jpg);"></div>
-					<div class="text d-flex align-items-center">
-						<div>
-							<div class="d-flex">
-								<div class="one-half">
-									<h3>Grilled Beef with potatoes</h3>
-								</div>
-								<div class="one-forth">
-									<span class="price">$29</span>
-								</div>
-							</div>
-							<p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-							<p><a href="#" class="btn btn-primary">Order now</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
-				<div class="menus d-sm-flex ftco-animate align-items-stretch">
-					<div class="menu-img img" style="background-image: url(resources/assets/public/images/breakfast-2.jpg);"></div>
-					<div class="text d-flex align-items-center">
-						<div>
-							<div class="d-flex">
-								<div class="one-half">
-									<h3>Grilled Beef with potatoes</h3>
-								</div>
-								<div class="one-forth">
-									<span class="price">$29</span>
-								</div>
-							</div>
-							<p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-							<p><a href="#" class="btn btn-primary">Order now</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </section>

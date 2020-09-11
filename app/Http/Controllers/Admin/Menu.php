@@ -104,4 +104,11 @@ class Menu extends Controller
             return view($this->view.'categories',compact('categories'));
         }
     }
+
+    public function delete_item($item_id){
+        //$result = Menus::Destroy($item_id);
+        $response['class'] = "success";
+        $response['message'] = "Item Deleted Successfully";
+        return json_encode($response);
+    }
 }
