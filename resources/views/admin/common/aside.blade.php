@@ -50,6 +50,21 @@
 	          				</a>
 	          			</li>
 	          		</ul>
+	          		
+	          	</li>
+	          	<li class="nav-item has-treeview">
+		          	<a href="#" class="nav-link">
+	          			<i class="nav-icon fa fa-hat-chef"></i>
+	          			<p>Sauciers<i class="right fas fa-angle-left"></i></p>
+	          		</a>
+	          		<ul class="nav nav-treeview">
+	          			<li class="nav-item">
+	          				<a href="{{ route('items') }}" class="nav-link">
+	          					<i class="far fa-circle nav-icon"></i>
+	          					<p>Our Sauciers</p>
+	          				</a>
+	          			</li>
+	          		</ul>
 	          	</li>
 	        </ul>
       	</nav>
