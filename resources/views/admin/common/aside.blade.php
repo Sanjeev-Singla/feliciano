@@ -59,7 +59,7 @@
 	          		</a>
 	          		<ul class="nav nav-treeview">
 	          			<li class="nav-item">
-	          				<a href="{{ route('items') }}" class="nav-link">
+	          				<a href="{{ route('sauciers') }}" class="nav-link">
 	          					<i class="far fa-circle nav-icon"></i>
 	          					<p>Our Sauciers</p>
 	          				</a>

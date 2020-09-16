@@ -22,7 +22,7 @@ class Menu extends Controller
     }
 
     public function index(Request $request){
-    	if ($request->post()) {
+    	if ($request->isMethod('post')) {
             $data = $request->all();
             if ($request->hasFile('image')) {
                 $this->validate($request,[
@@ -35,10 +35,13 @@ class Menu extends Controller
                     $constraint->aspectRatio();
                 })->save(public_path("images/menu").'/'.$input['imagename']);
                 $data['image'] = url('/public/images/menu').'/'.$input['imagename'];
+            }else{
+                $data['image'] = "";
             }
             $data['category'] = implode(",", $data['category']);
             $data['ingredients'] = implode(",", $data['ingredients']);
             $data['ip'] = $request->ip();
+
             $menu = new Menus($data);
             $result = $menu->save();
             if ($result) {
@@ -58,7 +61,13 @@ class Menu extends Controller
     }
 
     public function delete_item($item_id){
-        $result = Menus::Destroy($item_id);
+        $item = Menus::find($item_id);
+
+        if(\File::exists($item->image)){
+            \File::delete($item->image);
+        }
+        
+        Menus::Destroy($item_id);
         $response['class'] = "success";
         $response['message'] = "Item Deleted Successfully";
         return json_encode($response);

@@ -29,10 +29,10 @@
   	<link rel="stylesheet" href="{{ url('resources/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
   	<!-- Toastr -->
   	<link rel="stylesheet" href="{{ url('resources/assets/admin/plugins/toastr/toastr.min.css') }}">
-
-	  <!-- Theme style -->
-	  <link rel="stylesheet" href="{{ url('resources/assets/admin/dist/css/adminlte.min.css') }}">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="{{ url('resources/assets/admin/dist/css/adminlte.min.css') }}">
     <!-- Custom CSS -->
+	<link rel="stylesheet" href="{{ url('resources/assets/admin/custom/css/custom.css') }}">
     @stack('custom-css')
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">

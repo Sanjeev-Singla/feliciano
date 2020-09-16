@@ -81,4 +81,11 @@ Route::group(["prefix"=>"admin"],function(){
 
 	});
 	
+	/*
+	*	SAUCIERS 
+	*/
+	Route::group(["prefix"=>"menu"],function(){
+		Route::match(['get','post'],'sauciers',["as"=>"sauciers","uses"=>"Admin\Saucier@index"]);
+		Route::get('sauciers/{saucier_id}',["as"=>"admin_delete_saucier","uses"=>"Admin\Saucier@delete_saucier"]);
+	});
 });
