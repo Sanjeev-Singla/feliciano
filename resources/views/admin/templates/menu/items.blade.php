@@ -29,7 +29,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h3 class="card-title">Bordered Table</h3>
-							<button class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-circle"></i> Add Item</button>
+							<button class="btn btn-primary pull-right add-item-modal-button" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-circle"></i> Add Item</button>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
@@ -71,8 +71,8 @@
 											</td>
 											<td><img height="100px;" width="150px;" src="{{ $item->image }}"></td>
 											<td>
-												<a id="admin_delete_menu_item" item-url="{{ route('admin_delete_menu_item',$item->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
-												<a href="#" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+												<a id="admin_delete_menu_item" onClick="return confirm('Are you sure??')" item-url="{{ route('admin_delete_menu_item',$item->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+												<a href="#" id="admin_edit_menu_item" data-toggle="modal" data-target="#exampleModal" item-url="{{ route('admin_edit_menu_item',$item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
 											</td>
 										</tr>
 									@empty

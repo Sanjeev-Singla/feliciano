@@ -46,7 +46,7 @@
 									<tr>
 										<td>{{ $category->id }}</td>
 										<td>{{ $category->category }}</td>
-										<td><a href="helo" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+										<td><a href="#" id="admin_delete_category" onclick="return confirm('Are you sure?')" item-url="{{ route('admin_delete_category',$category->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
 									</tr>
 									@empty
 									<tr>
@@ -92,7 +92,7 @@
 											<div class="card-body">
 												<div class="form-group">
 													<label for="exampleInputEmail1">Category</label>
-													<input type="text" name="category" minlength="6" class="form-control" id="exampleInputEmail1" placeholder="Enter Category" required>
+													<input type="text" name="category" minlength="3" class="form-control" id="exampleInputEmail1" placeholder="Enter Category" required>
 												</div>
 											</div>
 											<!-- /.card-body -->

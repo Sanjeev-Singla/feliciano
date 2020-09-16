@@ -248,6 +248,7 @@
 								<p>
 									@php
 										$ingredient_ids = explode(",", $item->ingredients);
+										$ingredient = [];
 										foreach ($ingredient_ids as $key => $value) {
 											$ingredient[] = App\Models\Ingrediants::find($value)->ingrediant;
 										}

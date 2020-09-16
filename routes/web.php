@@ -70,8 +70,15 @@ Route::group(["prefix"=>"admin"],function(){
 		Route::match(['get','post'],"ingrediants",["as"=>"ingrediants","uses"=>"Admin\Menu@ingrediants"]);
 
 		Route::match(['get','post'],"categories",["as"=>"categories","uses"=>"Admin\Menu@categories"]);
-
+		
 		Route::get("delete-item/{item_id}",['as'=>'admin_delete_menu_item',"uses"=>"Admin\Menu@delete_item"]);
+
+		Route::get("delete-ingredient/{ingredient_id}",['as'=>'admin_delete_ingredient','uses'=>'Admin\Menu@delete_ingredient']);
+
+		Route::get("delete-category/{category_id}",['as'=>'admin_delete_category','uses'=>'Admin\Menu@delete_category']);
+
+		Route::post('edit-item/{itme_id}',['as'=>'admin_edit_menu_item','uses'=>'Admin\Menu@edit_item']);
+
 	});
 	
 });

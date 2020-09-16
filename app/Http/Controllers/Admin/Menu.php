@@ -57,6 +57,16 @@ class Menu extends Controller
         }
     }
 
+    public function delete_item($item_id){
+        $result = Menus::Destroy($item_id);
+        $response['class'] = "success";
+        $response['message'] = "Item Deleted Successfully";
+        return json_encode($response);
+    }
+
+    /*
+    *   MENU ITEM INGREDIANTS
+    */
     public function ingrediants(Request $request){
         if ($request->isMethod('post')) {
             $check_ingrediant = Ingrediants::whereIngrediant($request->ingrediant)->first();
@@ -81,6 +91,18 @@ class Menu extends Controller
         }
     }
 
+
+    public function delete_ingredient($ingredient_id){
+        $result = Ingrediants::Destroy($ingredient_id);
+        $response['class'] = "success";
+        $response['message'] = "Ingredient Deleted Successfully";
+        return json_encode($response);
+    }
+
+
+    /*
+    *   MENU ITEM CATEGORY
+    */
     public function categories(Request $request){
         if ($request->isMethod('post')) {
             $check_category = Categories::whereCategory($request->category)->first();
@@ -105,10 +127,10 @@ class Menu extends Controller
         }
     }
 
-    public function delete_item($item_id){
-        //$result = Menus::Destroy($item_id);
+    public function delete_category($category_id){
+        $result = Categories::Destroy($category_id);
         $response['class'] = "success";
-        $response['message'] = "Item Deleted Successfully";
+        $response['message'] = "Category Deleted Successfully";
         return json_encode($response);
     }
 }

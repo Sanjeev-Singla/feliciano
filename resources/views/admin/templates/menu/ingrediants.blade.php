@@ -43,10 +43,10 @@
 								</thead>
 								<tbody>
 									@forelse($ingrediants as $ingrediant)
-									<tr>
+									<tr id="ingrediant_content">
 										<td>{{ $ingrediant->id }}</td>
 										<td>{{ $ingrediant->ingrediant }}</td>
-										<td><a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a></td>
+										<td><a href="#" onclick="return confirm('Are you sure?')" id="admin_delete_ingredient" item-url="{{ route('admin_delete_ingredient',$ingrediant->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a></td>
 									</tr>
 									@empty
 									<tr>
@@ -92,7 +92,7 @@
 											<div class="card-body">
 												<div class="form-group">
 													<label for="exampleInputEmail1">Ingrediant</label>
-													<input type="text" name="ingrediant" minlength="6" class="form-control" id="exampleInputEmail1" placeholder="Enter Ingrediants" required>
+													<input type="text" name="ingrediant" minlength="3" class="form-control" id="exampleInputEmail1" placeholder="Enter Ingrediants" required>
 												</div>
 											</div>
 											<!-- /.card-body -->
