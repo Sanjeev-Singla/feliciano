@@ -77,7 +77,7 @@ Route::group(["prefix"=>"admin"],function(){
 
 		Route::get("delete-category/{category_id}",['as'=>'admin_delete_category','uses'=>'Admin\Menu@delete_category']);
 
-		Route::post('edit-item/{itme_id}',['as'=>'admin_edit_menu_item','uses'=>'Admin\Menu@edit_item']);
+		Route::match(['get','post'],'edit-item/{item_id}',['as'=>'admin_edit_menu_item','uses'=>'Admin\Menu@edit_item']);
 
 	});
 	

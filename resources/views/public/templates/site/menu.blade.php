@@ -20,7 +20,12 @@
 			<div class="row">
 				<div class="col-md-12 nav-link-wrap">
 					<div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-						<a class="nav-link ftco-animate active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Breakfast</a>
+						@forelse($categories as $category)
+							<a class="nav-link ftco-animate {{ ($category['id']==1)?'active':'' }}" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-{{ $category['id'] }}" role="tab" aria-controls="v-pills-{{ $category['id'] }}" aria-selected="{{ ($category['id']==1)?'true':'false' }}">{{ $category['category'] }}</a>
+						@empty
+							<h3>No Menu is available</h3>
+						@endforelse
+						<!-- <a class="nav-link ftco-animate active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Breakfast</a>
 
 						<a class="nav-link ftco-animate" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Lunch</a>
 
@@ -30,7 +35,7 @@
 
 						<a class="nav-link ftco-animate" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false">Desserts</a>
 
-						<a class="nav-link ftco-animate" id="v-pills-6-tab" data-toggle="pill" href="#v-pills-6" role="tab" aria-controls="v-pills-6" aria-selected="false">Wine</a>
+						<a class="nav-link ftco-animate" id="v-pills-6-tab" data-toggle="pill" href="#v-pills-6" role="tab" aria-controls="v-pills-6" aria-selected="false">Wine</a> -->
 
 					</div>
 				</div>
@@ -53,7 +58,7 @@
 										}
 										$category_ids = explode(",", $menu->category);
 									@endphp
-									@if(in_array("6",$category_ids))
+									@if(in_array('1',$category_ids))
 									<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
 										<div class="menus d-sm-flex ftco-animate align-items-stretch">
 											
@@ -110,7 +115,7 @@
 										}
 										$category_ids = explode(",", $menu->category);
 									@endphp
-									@if(in_array("7",$category_ids))
+									@if(in_array("2",$category_ids))
 									<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
 										<div class="menus d-sm-flex ftco-animate align-items-stretch">
 											
@@ -167,7 +172,7 @@
 										}
 										$category_ids = explode(",", $menu->category);
 									@endphp
-									@if(in_array("8",$category_ids))
+									@if(in_array("3",$category_ids))
 									<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
 										<div class="menus d-sm-flex ftco-animate align-items-stretch">
 											
@@ -224,7 +229,7 @@
 										}
 										$category_ids = explode(",", $menu->category);
 									@endphp
-									@if(in_array("9",$category_ids))
+									@if(in_array("4",$category_ids))
 									<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
 										<div class="menus d-sm-flex ftco-animate align-items-stretch">
 											
@@ -281,7 +286,7 @@
 										}
 										$category_ids = explode(",", $menu->category);
 									@endphp
-									@if(in_array("10",$category_ids))
+									@if(in_array("5",$category_ids))
 									<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
 										<div class="menus d-sm-flex ftco-animate align-items-stretch">
 											
@@ -338,7 +343,7 @@
 										}
 										$category_ids = explode(",", $menu->category);
 									@endphp
-									@if(in_array("11",$category_ids))
+									@if(in_array("6",$category_ids))
 									<div class="col-md-12 col-lg-6 d-flex align-self-stretch">
 										<div class="menus d-sm-flex ftco-animate align-items-stretch">
 											

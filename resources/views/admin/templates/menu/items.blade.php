@@ -135,10 +135,10 @@
 
 												<div class="form-group">
 													<label>Ingrediants</label>
-													<div class="select2-purple">
+													<div class="select2-purple" id="item_ingredient">
 														<select class="select2" name="ingredients[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;" required>
 															@forelse($ingrediants as $ingrediant)
-															<option value="{{ $ingrediant->id }}">{{ $ingrediant->ingrediant }}</option>
+															<option id="menu_ingrediant{{ $ingrediant->id }}" value="{{ $ingrediant->id }}">{{ $ingrediant->ingrediant }}</option>
 															@empty
 															<option value="">No Ingrediant Available</option>
 															@endforelse
@@ -148,10 +148,10 @@
 
 												<div class="form-group">
 													<label>Category</label>
-													<div class="select2-purple">
+													<div class="select2-purple" id="item_category">
 														<select class="select2" name="category[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;" required>
 															@forelse($categories as $category)
-															<option value="{{ $category->id }}">{{ $category->category }}</option>
+															<option id="menu_category{{ $category->id }}" value="{{ $category->id }}">{{ $category->category }}</option>
 															@empty
 															<option value="">No Category Available</option>
 															@endforelse
@@ -176,6 +176,7 @@
 														</div>
 													</div>
 												</div>
+												<img id="item_image" src="" height="100px;" width="200px;" hidden=""> 
 											</div>
 											<!-- /.card-body -->
 

@@ -136,6 +136,52 @@ class Menu extends Controller
         }
     }
 
+    public function edit_item(Request $request,$item_id){
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            $menu = Menus::find($item_id);
+
+            if ($request->hasFile('image')) {
+                $this->validate($request,[
+                    'image' => 'required|image|mimes:jpeg,png,jpg',
+                ]);
+                $image = $request->file('image');
+                $input['imagename'] = rand().$image->getClientOriginalName();
+                $img = ImageResize::make($image->path());
+                $img->resize(800, 800, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path("images/menu").'/'.$input['imagename']);
+
+                // Removing previous Image
+                if(\File::exists($menu->image)){
+                    \File::delete($menu->image);
+                }
+
+                $data['image'] = url('/public/images/menu').'/'.$input['imagename'];
+            }
+
+            $data['category'] = implode(",", $data['category']);
+            $data['ingredients'] = implode(",", $data['ingredients']);
+            $data['ip'] = $request->ip();
+            
+            $menu->fill($data);
+            $result = $menu->save();
+            if ($result) {
+                session()->flash('class',"success");
+                session()->flash('message',"Item Updated Successfully!");
+            }else{
+                session()->flash('class',"danger");
+                session()->flash('message',"Unable to Update!");
+            }
+            return back();
+        }else{
+            $item = Menus::find($item_id);
+            $item['ingrediants'] = explode(",", $item['ingredients']);
+            $item['categories'] = explode(",", $item['category']);
+            echo json_encode($item);
+        }
+    }
+
     public function delete_category($category_id){
         $result = Categories::Destroy($category_id);
         $response['class'] = "success";
