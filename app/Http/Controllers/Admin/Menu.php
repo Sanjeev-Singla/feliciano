@@ -21,6 +21,9 @@ class Menu extends Controller
     	}
     }
 
+    /*
+    *   MENU ITEM
+    */
     public function index(Request $request){
     	if ($request->isMethod('post')) {
             $data = $request->all();
@@ -57,82 +60,6 @@ class Menu extends Controller
             $categories = Categories::all();
             $items = Menus::whereStatus(1)->paginate(10);
             return view($this->view.'items',compact(['ingrediants','categories','items']));
-        }
-    }
-
-    public function delete_item($item_id){
-        $item = Menus::find($item_id);
-
-        if(\File::exists($item->image)){
-            \File::delete($item->image);
-        }
-        
-        Menus::Destroy($item_id);
-        $response['class'] = "success";
-        $response['message'] = "Item Deleted Successfully";
-        return json_encode($response);
-    }
-
-    /*
-    *   MENU ITEM INGREDIANTS
-    */
-    public function ingrediants(Request $request){
-        if ($request->isMethod('post')) {
-            $check_ingrediant = Ingrediants::whereIngrediant($request->ingrediant)->first();
-            if (!empty($check_ingrediant)) {
-                session()->flash('class',"danger");
-                session()->flash('message',"Ingradiant Already Exists!");
-            }else{
-                $ingrediants = new Ingrediants($request->all());
-                $result = $ingrediants->save();
-                if ($result) {
-                    session()->flash('class',"success");
-                    session()->flash('message',"Ingrediant Saved Successfully!");
-                }else{
-                    session()->flash('class',"danger");
-                    session()->flash('message',"Unable to Save!");
-                }
-            }
-            return back();
-        }else{
-            $ingrediants = Ingrediants::paginate(10);
-            return view($this->view.'ingrediants',compact('ingrediants'));
-        }
-    }
-
-
-    public function delete_ingredient($ingredient_id){
-        $result = Ingrediants::Destroy($ingredient_id);
-        $response['class'] = "success";
-        $response['message'] = "Ingredient Deleted Successfully";
-        return json_encode($response);
-    }
-
-
-    /*
-    *   MENU ITEM CATEGORY
-    */
-    public function categories(Request $request){
-        if ($request->isMethod('post')) {
-            $check_category = Categories::whereCategory($request->category)->first();
-            if (!empty($check_category->category)) {
-                session()->flash('class',"danger");
-                session()->flash('message',"Category Already Exists!");
-            }else{
-                $categories = new Categories($request->all());
-                $result = $categories->save();
-                if ($result) {
-                    session()->flash('class',"success");
-                    session()->flash('message',"Category Saved Successfully!");
-                }else{
-                    session()->flash('class',"danger");
-                    session()->flash('message',"Unable to Save!");
-                }
-            }
-            return back();
-        }else{
-            $categories = Categories::paginate(10);
-            return view($this->view.'categories',compact('categories'));
         }
     }
 
@@ -179,6 +106,81 @@ class Menu extends Controller
             $item['ingrediants'] = explode(",", $item['ingredients']);
             $item['categories'] = explode(",", $item['category']);
             echo json_encode($item);
+        }
+    }
+
+    public function delete_item($item_id){
+        $item = Menus::find($item_id);
+
+        if(\File::exists($item->image)){
+            \File::delete($item->image);
+        }
+        
+        Menus::Destroy($item_id);
+        $response['class'] = "success";
+        $response['message'] = "Item Deleted Successfully";
+        return json_encode($response);
+    }
+
+    /*
+    *   MENU ITEM INGREDIANTS
+    */
+    public function ingrediants(Request $request){
+        if ($request->isMethod('post')) {
+            $check_ingrediant = Ingrediants::whereIngrediant($request->ingrediant)->first();
+            if (!empty($check_ingrediant)) {
+                session()->flash('class',"danger");
+                session()->flash('message',"Ingradiant Already Exists!");
+            }else{
+                $ingrediants = new Ingrediants($request->all());
+                $result = $ingrediants->save();
+                if ($result) {
+                    session()->flash('class',"success");
+                    session()->flash('message',"Ingrediant Saved Successfully!");
+                }else{
+                    session()->flash('class',"danger");
+                    session()->flash('message',"Unable to Save!");
+                }
+            }
+            return back();
+        }else{
+            $ingrediants = Ingrediants::paginate(10);
+            return view($this->view.'ingrediants',compact('ingrediants'));
+        }
+    }
+
+    public function delete_ingredient($ingredient_id){
+        $result = Ingrediants::Destroy($ingredient_id);
+        $response['class'] = "success";
+        $response['message'] = "Ingredient Deleted Successfully";
+        return json_encode($response);
+    }
+
+
+    /*
+    *   MENU ITEM CATEGORY
+    */
+    public function categories(Request $request){
+        if ($request->isMethod('post')) {
+            $check_category = Categories::whereCategory($request->category)->first();
+            if (!empty($check_category->category)) {
+                session()->flash('class',"danger");
+                session()->flash('message',"Category Already Exists!");
+            }else{
+                $categories = new Categories($request->all());
+                $result = $categories->save();
+                if ($result) {
+                    session()->flash('class',"success");
+                    session()->flash('message',"Category Saved Successfully!");
+                }else{
+                    session()->flash('class',"danger");
+                    session()->flash('message',"Unable to Save!");
+                }
+            }
+            return back();
+        }else{
+            $categories = Categories::paginate(10);
+            return view($this->view.'categories',compact('categories'));
         }
     }
 

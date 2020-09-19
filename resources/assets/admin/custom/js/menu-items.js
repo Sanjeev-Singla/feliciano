@@ -90,10 +90,6 @@ $(document).ready(function(){
 
 	});
 
-	$("span.select2-selection__choice__remove").click(function(){
-		$(this).parent().remove();
-	});
-
 	$('button.add-item-modal-button').click(function(){
 		$('#menu_item_form_submit').attr('action',"");
 	});
