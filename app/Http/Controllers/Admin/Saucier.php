@@ -55,6 +55,19 @@ class Saucier extends Controller
         }
     }
 
+    public function edit_saucier(Request $request,$saucier_id){
+        if ($request->isMethod('post')) {
+            $data = $request->post();
+            $saucier  = Chef::find($saucier_id);
+            $saucier->fill($data);
+            $saucier->save();
+            return back();
+        }else{
+            $saucier = Chef::find($saucier_id);
+            echo json_encode($saucier);
+        }
+    }
+
     public function delete_saucier($saucier_id){
     	$chef = Chef::find($saucier_id);
     	if(\File::exists($chef->image)){

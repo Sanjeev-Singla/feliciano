@@ -29,7 +29,7 @@
 					<div class="card">
 						<div class="card-header">
 							<h3 class="card-title">Bordered Table</h3>
-							<button class="btn btn-info pull-right" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-circle"></i> Add Saucier</button>
+							<button class="btn btn-info pull-right" id="add_saucier_button" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-circle"></i> Add Saucier</button>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
@@ -50,7 +50,14 @@
 										<td>{{ $saucier->name }}</td>
 										<td>{{ $saucier->position }}</td>
 										<td><img height="100px;" width="150px;" src="{{ $saucier->image }}"></td>
-										<td><a href="#" onclick="return confirm('Are you sure?')" id="admin_delete_saucier" item-url="{{ route('admin_delete_saucier',$saucier->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a></td>
+										<td>
+											<a href="#" onclick="return confirm('Are you sure?')" id="admin_delete_saucier" item-url="{{ route('admin_delete_saucier',$saucier->id) }}" class="btn btn-danger btn-sm">
+												<i class="fa fa-trash"></i>
+											</a>
+											<a href="#" data-toggle="modal" data-target="#exampleModal" id="admin_edit_saucier" item-url="{{ route('admin_edit_saucier',$saucier->id) }}" class="btn btn-primary btn-sm">
+												<i class="fa fa-edit"></i>
+											</a>
+										</td>
 									</tr>
 									@empty
 									<tr>
@@ -145,6 +152,8 @@
 														</div>
 													</div>
 												</div>
+
+												<img height="100px" width="150px" src="" id="saucier_image" hidden="">
 											</div>
 											<!-- /.card-body -->
 

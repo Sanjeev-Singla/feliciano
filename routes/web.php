@@ -86,6 +86,7 @@ Route::group(["prefix"=>"admin"],function(){
 	*/
 	Route::group(["prefix"=>"menu"],function(){
 		Route::match(['get','post'],'sauciers',["as"=>"sauciers","uses"=>"Admin\Saucier@index"]);
-		Route::get('sauciers/{saucier_id}',["as"=>"admin_delete_saucier","uses"=>"Admin\Saucier@delete_saucier"]);
+		Route::get('delete-sauciers/{saucier_id}',["as"=>"admin_delete_saucier","uses"=>"Admin\Saucier@delete_saucier"]);
+		Route::match(['get','post'],'edit-sauciers/{saucier_id}',["as"=>"admin_edit_saucier","uses"=>"Admin\Saucier@edit_saucier"]);
 	});
 });

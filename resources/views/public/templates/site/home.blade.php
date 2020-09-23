@@ -281,74 +281,25 @@
 			</div>
 		</div>	
 		<div class="row">
+			@foreach($chefs as $chef)
 			<div class="col-md-6 col-lg-3 ftco-animate">
 				<div class="staff">
-					<div class="img" style="background-image: url(resources/assets/public/images/chef-4.jpg);"></div>
+					<div class="img" style="background-image: url({{$chef['image']}})"></div>
 					<div class="text pt-4">
-						<h3>John Smooth</h3>
-						<span class="position mb-2">Restaurant Owner</span>
+						<h3>{{ $chef['name'] }}</h3>
+						<span class="position mb-2">{{ $chef['position'] }}</span>
 						<div class="faded">
 							<ul class="ftco-social d-flex">
-								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+								<li class="ftco-animate"><a href="{{ $chef['twitter_link'] }}"><span class="icon-twitter"></span></a></li>
+								<li class="ftco-animate"><a href="{{ $chef['facebook_link'] }}"><span class="icon-facebook"></span></a></li>
+								<li class="ftco-animate"><a href="{{ $chef['google_plus_link'] }}"><span class="icon-google-plus"></span></a></li>
+								<li class="ftco-animate"><a href="{{ $chef['instagram_link'] }}"><span class="icon-instagram"></span></a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="staff">
-					<div class="img" style="background-image: url(resources/assets/public/images/chef-2.jpg);"></div>
-					<div class="text pt-4">
-						<h3>Rebeca Welson</h3>
-						<span class="position mb-2">Head Chef</span>
-						<div class="faded">
-							<ul class="ftco-social d-flex">
-								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="staff">
-					<div class="img" style="background-image: url(resources/assets/public/images/chef-3.jpg);"></div>
-					<div class="text pt-4">
-						<h3>Kharl Branyt</h3>
-						<span class="position mb-2">Chef</span>
-						<div class="faded">
-							<ul class="ftco-social d-flex">
-								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="staff">
-					<div class="img" style="background-image: url(resources/assets/public/images/chef-1.jpg);"></div>
-					<div class="text pt-4">
-						<h3>Luke Simon</h3>
-						<span class="position mb-2">Chef</span>
-						<div class="faded">
-							<ul class="ftco-social d-flex">
-								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+			@endforeach
 		</div>
 	</div>
 </section>
